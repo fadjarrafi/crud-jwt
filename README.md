@@ -1,2 +1,2 @@
 # crud-jwt
- CRUD API with JWT Auth written in NodeJS
+ CRUD API with JWT Auth written with MERN Stack
