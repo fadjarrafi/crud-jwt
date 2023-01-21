@@ -23,7 +23,7 @@ const Register = () => {
             navigate('/');
         } catch (error) {
             if (error.response) {
-                console.log(error.response.data);
+                setMsg(error.response.data.msg);
             }
         }
     }
@@ -35,6 +35,7 @@ const Register = () => {
             <div className="columns is-centered">
                 <div className="column is-4-desktop">
                     <form onSubmit={Register} className="box">
+                        <p className="has-text-centered">{msg}</p>
                         <div className="field mt-5">
                             <label className="label">Name</label>
                             <div className="controls">
