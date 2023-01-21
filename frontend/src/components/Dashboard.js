@@ -7,10 +7,12 @@ const Dashboard = () => {
   const [name, setName] = useState("");
   const [token, setToken] = useState("");
   const [expire, setExpire] = useState("");
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     refreshToken();
+    getUsers();
   }, []);
 
   const refreshToken = async () => {
@@ -53,7 +55,7 @@ const Dashboard = () => {
         Authorization: `Bearer ${token}`,
       },
     });
-    console.log(response.data);
+    setUsers(response.data);
   };
 
   return (
@@ -62,6 +64,24 @@ const Dashboard = () => {
       <button onClick={getUsers} className="button is-info">
         Get Users
       </button>
+      <table className="table is-striped is-fullwidth">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user, index) => (
+            <tr key={user.id}>
+              <th>{index + 1}</th>
+              <th>{user.name}</th>
+              <th>{user.email}</th>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
